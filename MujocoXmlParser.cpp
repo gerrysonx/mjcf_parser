@@ -10,7 +10,7 @@ void BodyParam::Destroy()
 	BodyParam* pNow = this;
 	while (0 != pNow)
 	{
-		BodyParam* _pChild = pNow->pChild;
+		BodyParam* _pNext = pNow->pSibling;
 		// Delete the joints and geoms related to this Body.
 		GeomParam* _pGeom = pNow->pGeoms;
 		while (0 != _pGeom)
@@ -30,7 +30,13 @@ void BodyParam::Destroy()
 			_pJoint = pNexJoint;
 		}
 
-		pNow = _pChild;
+		if (pNow->pChild)
+		{
+			pNow->pChild->Destroy();
+		}
+
+		delete pNow;
+		pNow = _pNext;
 	} 
 
 }

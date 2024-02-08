@@ -54,11 +54,6 @@ struct BodyParam
 		memset(this, 0, sizeof(BodyParam));
 	}
 
-	~BodyParam()
-	{
-		this->Destroy();
-	}
-
 	float posLocal[3];
 	float posGlobal[3];
 
